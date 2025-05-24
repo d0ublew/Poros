@@ -203,7 +203,7 @@ fn is_32_bit_app(package_name: &str) -> bool {
     let mut is_32_bit_app = false;
 
     let command = format!(
-        "adb shell 'if [ -d {}/lib/oat ]; then echo \"exists\"; else echo \"not exists\"; fi'",
+        "adb shell 'if [[ -d {}/lib/oat ]]; then echo \"exists\"; else echo \"not exists\"; fi'",
         installed_directory
     );
 
@@ -213,7 +213,7 @@ fn is_32_bit_app(package_name: &str) -> bool {
         is_32_bit_app = true;
     } else {
         let command = format!(
-            "adb shell 'if [ -d {}/lib/arm ]; then echo \"exists\"; else echo \"not exists\"; fi'",
+            "adb shell 'if [[ -d {}/lib/arm ]]; then echo \"exists\"; else echo \"not exists\"; fi'",
             installed_directory
         );
         let dir_exist_result = execute(command).unwrap_or((false, "".to_string()));
